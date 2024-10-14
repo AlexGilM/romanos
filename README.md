@@ -24,3 +24,7 @@ y devuelva una cadena que represente ese número como romano.
     3.2 Tiene que ser menor que 4000
 4. Devuelve una cadena
 ## Seguna parte: convertir de romano a entero
+
+## Referencia de comandos GIT
+- 'git remote': lista todos los espacios remotos a los que hace referencia el repositorio local (y, por tanto, puede sicronizar cambios en él)
+- 'git remote get-url origin': 'origin' es el nombre del espacio remoto (en este caso Github) y con este comando podemos ver la URl a la que hace referencia. En el caso de este repo: https://github.com/KeepCodingCeroXXII/romanos.git

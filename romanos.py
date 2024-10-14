@@ -19,6 +19,18 @@ def convertir_a_romano(numero):
     num_centena = resto // 100 # del 0 al 9
     romano = romano + centenas[num_centena]
 
+    decenas = ['', 'X','XX', 'XXX', 'XL', 'L', 'LX', 'LXX','LXXX', 'XC']
+    #resto = resto % 100
+    resto = numero % 100
+    num_decena = resto // 10 # 0 ... 9
+    romano = romano + decenas[num_decena]
+
+    unidades = ['', 'I','II','III','IV','V','VI','VII','VIII','IX']
+    
+    resto = numero % 10
+    num_unidad = resto // 1 #---> resto
+    romano = romano + unidades[num_unidad]
+
     return romano
 
 

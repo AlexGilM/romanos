@@ -45,3 +45,12 @@ Mirar si tiene miles.... al ser mil y "pico" ponemos una M
 ## Referencia de comandos GIT
 - 'git remote': lista todos los espacios remotos a los que hace referencia el repositorio local (y, por tanto, puede sicronizar cambios en él)
 - 'git remote get-url origin': 'origin' es el nombre del espacio remoto (en este caso Github) y con este comando podemos ver la URl a la que hace referencia. En el caso de este repo: https://github.com/KeepCodingCeroXXII/romanos.git
+- 'git clone <url-del-repositorio>': hace una copia del repositorio remoto en la maquina local
+- 'git clone <url-del-repositorio> <destino>': igual al anterior pero permite crear la copia en una carpeta con el nombre que especificamos en destino
+- 'git log' : permite explorar el histórico de commits
+- 'git log --oneline': simplifica la salida del log poniendo solamente el hash y el mensaje del commit
+
+- 'git fetch': actualiza la información de las ramas y los commits disponibles en el repositorio remoto
+- 'git pull': sincroniza desde el repositorio remoto hacia la maquina local el contenido de los commits de la rama actual.
+- 'git push': sincroniza desde la maquina local hacia el repositorio el contenido de los commits de la rama actual.
+'

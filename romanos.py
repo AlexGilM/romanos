@@ -5,32 +5,45 @@
 #    3.2 Tiene que ser menor que 4000
 #4. Devuelve una cadena
 
+
 def convertir_a_romano(numero):
+
+    #validaciones
     if type(numero) != int:
         return f'Error:  {numero}  no es un entero'
     elif numero <= 0 or numero >=4000:
         return f'Error: {numero} fuera de rango 0> # <4000'   
-    romano = ''
-    cociente = numero // 1000
-    for i in range(cociente):
-        romano= romano + "M"
+    
+    #definiciones
+    millares = ['', 'M', 'MM', 'MMM']
     centenas = ['','C','CC','CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM']
-    resto = numero % 1000
-    num_centena = resto // 100 # del 0 al 9
-    romano = romano + centenas[num_centena]
-
     decenas = ['', 'X','XX', 'XXX', 'XL', 'L', 'LX', 'LXX','LXXX', 'XC']
-    #resto = resto % 100
-    resto = numero % 100
-    num_decena = resto // 10 # 0 ... 9
-    romano = romano + decenas[num_decena]
-
     unidades = ['', 'I','II','III','IV','V','VI','VII','VIII','IX']
     
+    #inicializacion
+    romano = ''
+
+    #calculos
+    #cociente = numero // 1000
+    #for i in range(cociente):
+        #romano= romano + "M"
+
+    num_millares = numero // 1000
+    romano = romano + millares[num_millares]
+    
+    resto = numero % 1000
+    num_centena = resto // 100
+    romano = romano + centenas[num_centena]
+
+    resto = numero % 100
+    num_decena = resto // 10
+    romano = romano + decenas[num_decena]
+
     resto = numero % 10
-    num_unidad = resto // 1 #---> resto
+    num_unidad = resto // 1
     romano = romano + unidades[num_unidad]
 
+    #devolvemos resultado
     return romano
 
 

@@ -65,7 +65,7 @@ def convertir_a_romano(numero):
     #resto = numero % 10**0
 
     
-    for n in range(3,0,-1):
+    for n in range(3,0-1,-1):
         cociente = numero // 10**n
         romano = romano + conversores[n][cociente]
         numero = numero % 10**n

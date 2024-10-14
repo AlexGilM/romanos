@@ -10,14 +10,39 @@ def convertir_a_romano(numero):
         return f'Error:  {numero}  no es un entero'
     elif numero <= 0 or numero >=4000:
         return f'Error: {numero} fuera de rango 0> # <4000'   
-    return 'TODO: Convertir a romano'
-print(convertir_a_romano(56))
-print(convertir_a_romano(56.1))
-print(convertir_a_romano('algo escrito'))
-print(convertir_a_romano([]))
-print(convertir_a_romano({}))
-print(convertir_a_romano((1,)))
-print(convertir_a_romano((0)))
-print(convertir_a_romano((4000)))
-print(convertir_a_romano((1)))
-print(convertir_a_romano((3999)))
+    romano = ''
+    cociente = numero // 1000
+    for i in range(cociente):
+        romano= romano + "M"
+    centenas = ['','C','CC','CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM']
+    resto = numero % 1000
+    num_centena = resto // 100 # del 0 al 9
+    romano = romano + centenas[num_centena]
+
+    return romano
+
+
+# 3xx CCC...
+# 4.. CD
+# 5.. D  
+# 6.. DC
+# 7.. DCC
+# 8.. DCCC
+# 9.. CM
+print(1137, convertir_a_romano(1137))
+print(2156, convertir_a_romano(2156))
+print(3256, convertir_a_romano(3256))
+print(156, convertir_a_romano(156))
+print(256, convertir_a_romano(256))
+print(456, convertir_a_romano(456))
+print(556, convertir_a_romano(556))
+print(856, convertir_a_romano(856))
+print(56,convertir_a_romano(56))
+print(5, convertir_a_romano(5))
+print(1, convertir_a_romano((1)))
+print(3999, convertir_a_romano((3999)))
+
+#print(convertir_a_romano((1,)))
+#print(convertir_a_romano((0)))
+#print(convertir_a_romano((4000)))
+

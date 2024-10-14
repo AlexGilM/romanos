@@ -20,6 +20,26 @@ def convertir_a_romano(numero):
     decenas = ['', 'X','XX', 'XXX', 'XL', 'L', 'LX', 'LXX','LXXX', 'XC']
     unidades = ['', 'I','II','III','IV','V','VI','VII','VIII','IX']
     
+    conversores = [
+        unidades,
+        decenas,
+        centenas,
+        millares,     
+        ]
+
+    # conversores = [
+    #     ['', 'I','II','III','IV','V','VI','VII','VIII','IX']
+    #     ['', 'X','XX', 'XXX', 'XL', 'L', 'LX', 'LXX','LXXX', 'XC']
+    #     ['','C','CC','CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM']
+    #     ['', 'M', 'MM', 'MMM']
+    # ]
+
+    # conversores[1][4] -----> 40 ó XL
+    #1 --- conversores[3][1]
+    #1 --- conversores[2][1]
+    #3 --- conversores[1][3]
+    #7 --- conversores[03][7]
+    #range(4) ---- 1000, 1000, 10, 1 ----- 3, 2, 1, 0
     #inicializacion
     romano = ''
 
@@ -28,20 +48,27 @@ def convertir_a_romano(numero):
     #for i in range(cociente):
         #romano= romano + "M"
 
-    num_millares = numero // 1000
-    romano = romano + millares[num_millares]
+    #cociente = numero // 10**3
+    #romano = romano + conversores[3][cociente]
+    #resto = numero % 10**3
     
-    resto = numero % 1000
-    num_centena = resto // 100
-    romano = romano + centenas[num_centena]
+    #cociente = resto // 10**2
+    #romano = romano + conversores[2][cociente]
+    #resto = numero % 10**2
+    
+    #cociente = resto // 10**1
+    #romano = romano + conversores[1][cociente]
+    #resto = numero % 10**1
+    
+    #cociente = resto // 10**0
+    #romano = romano + conversores[0][cociente]
+    #resto = numero % 10**0
 
-    resto = numero % 100
-    num_decena = resto // 10
-    romano = romano + decenas[num_decena]
-
-    resto = numero % 10
-    num_unidad = resto // 1
-    romano = romano + unidades[num_unidad]
+    
+    for n in range(3,0,-1):
+        cociente = numero // 10**n
+        romano = romano + conversores[n][cociente]
+        numero = numero % 10**n
 
     #devolvemos resultado
     return romano

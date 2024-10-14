@@ -23,6 +23,23 @@ y devuelva una cadena que represente ese número como romano.
     3.1 tiene que ser mayor que cero
     3.2 Tiene que ser menor que 4000
 4. Devuelve una cadena
+'''
+1137 ==> 'MCXXXV'
+||||_________ VII ..... 7 Unidades = 7 * 10^0
+|||__________ XXX ..... 3 Decenas = 3 * 10^1
+||___________ C ....... 1 Centenas = 1 * 10^2
+|____________ M ....... 1 Millares = 1 * 10^3
+Mirar si tiene miles.... al ser mil y "pico" ponemos una M
+
+1137 = 1 * 10^3 + 1 * 10^2 + 3 * 10^1 + 7 * 10^0
+
+1137/1000 = 1.137 -----> solo utilizamos la parte entera
+1137 // 1000 = 1 (la // me devuelve el cociente) covierto el 1 en una M
+2137 // 1000 = 2 convierto el 2 en MM
+3137 // 1000 = 3 convierto el 3 en MMM
+4... nos da error
+'''
+
 ## Seguna parte: convertir de romano a entero
 
 ## Referencia de comandos GIT

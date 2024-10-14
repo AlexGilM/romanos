@@ -7,12 +7,17 @@
 
 def convertir_a_romano(numero):
     if type(numero) != int:
-        return 'Error: no es un entero'
+        return f'Error:  {numero}  no es un entero'
+    elif numero <= 0 or numero >=4000:
+        return f'Error: {numero} fuera de rango 0> # <4000'   
     return 'TODO: Convertir a romano'
 print(convertir_a_romano(56))
 print(convertir_a_romano(56.1))
 print(convertir_a_romano('algo escrito'))
 print(convertir_a_romano([]))
+print(convertir_a_romano({}))
 print(convertir_a_romano((1,)))
-
-
+print(convertir_a_romano((0)))
+print(convertir_a_romano((4000)))
+print(convertir_a_romano((1)))
+print(convertir_a_romano((3999)))

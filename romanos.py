@@ -104,16 +104,25 @@ def romano_a_entero(romano):
     MCXXII => 1123
         - validar la entrada
             - tiene que ser una cadena
+            - la cadena debe tener un carácter válido: I, V, X, L, C, D, M
     """
+    if romano == '':
+        return 'ERROR: debes introducir una cadena válida (no vacía)'
     #alternativa: if not isinstance(romano, str):
     if type(romano) != str:
         return 'ERROR: tiene que ser un número romano como cadena de texto (string)'
+    
 
+
+    for letra in romano:
+        if letra not in 'IVXLCDM':
+            return f'ERROR: {letra} no es un dígito romano válido (I, V, X, L, C, D, M)'
     return 'Todo: convertir romano a entero'
 
 pruebas = [
-    'A','', 3, ['X','X','I'],'I', 'MCXXIII'
+    'A','', 'XXii', 3, ['X','X','I'],'I', 'MCXXIII'
 ]
 
 for elemento in pruebas:
         print(elemento, romano_a_entero(elemento))
+

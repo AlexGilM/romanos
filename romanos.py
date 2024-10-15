@@ -105,7 +105,25 @@ def romano_a_entero(romano):
         - validar la entrada
             - tiene que ser una cadena
             - la cadena debe tener un carácter válido: I, V, X, L, C, D, M
+        - proceso básico de conversión
+            - leemos las letras de izquierda a derecha
+            - para cada legtra obtenemos su valor
+                y vamos sumando con el valor acumulado
+            - cuando ya no quedan mas letras el valor acumulado es el resultado
     """
+  
+    digitos_romanos = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000,
+    }
+
+
+    
     if romano == '':
         return 'ERROR: debes introducir una cadena válida (no vacía)'
     #alternativa: if not isinstance(romano, str):
@@ -113,14 +131,16 @@ def romano_a_entero(romano):
         return 'ERROR: tiene que ser un número romano como cadena de texto (string)'
     
 
-
-    for letra in romano:
-        if letra not in 'IVXLCDM':
+    resultado = 0
+    for letra in romano: #'MCXXIII'
+        if letra not in digitos_romanos:
             return f'ERROR: {letra} no es un dígito romano válido (I, V, X, L, C, D, M)'
-    return 'Todo: convertir romano a entero'
+        resultado = resultado + digitos_romanos[letra]
+    
+    return resultado
 
 pruebas = [
-    'A','', 'XXii', 3, ['X','X','I'],'I', 'MCXXIII'
+    'I', 'XV', 'CCLII', 'MCXXIII'
 ]
 
 for elemento in pruebas:

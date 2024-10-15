@@ -81,20 +81,39 @@ def convertir_a_romano(numero):
 # 7.. DCC
 # 8.. DCCC
 # 9.. CM
-print(1137, convertir_a_romano(1137))
-print(2156, convertir_a_romano(2156))
-print(3256, convertir_a_romano(3256))
-print(156, convertir_a_romano(156))
-print(256, convertir_a_romano(256))
-print(456, convertir_a_romano(456))
-print(556, convertir_a_romano(556))
-print(856, convertir_a_romano(856))
-print(56,convertir_a_romano(56))
-print(5, convertir_a_romano(5))
-print(1, convertir_a_romano((1)))
-print(3999, convertir_a_romano((3999)))
+#print(1137, convertir_a_romano(1137))
+#print(2156, convertir_a_romano(2156))
+#print(3256, convertir_a_romano(3256))
+#print(156, convertir_a_romano(156))
+#print(256, convertir_a_romano(256))
+#print(456, convertir_a_romano(456))
+#print(556, convertir_a_romano(556))
+#print(856, convertir_a_romano(856))
+#print(56,convertir_a_romano(56))
+#print(5, convertir_a_romano(5))
+#print(1, convertir_a_romano((1)))
+#print(3999, convertir_a_romano((3999)))
 
 #print(convertir_a_romano((1,)))
 #print(convertir_a_romano((0)))
 #print(convertir_a_romano((4000)))
 
+
+def romano_a_entero(romano):
+    """
+    MCXXII => 1123
+        - validar la entrada
+            - tiene que ser una cadena
+    """
+    #alternativa: if not isinstance(romano, str):
+    if type(romano) != str:
+        return 'ERROR: tiene que ser un número romano como cadena de texto (string)'
+
+    return 'Todo: convertir romano a entero'
+
+pruebas = [
+    'A','', 3, ['X','X','I'],'I', 'MCXXIII'
+]
+
+for elemento in pruebas:
+        print(elemento, romano_a_entero(elemento))

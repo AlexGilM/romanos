@@ -132,15 +132,24 @@ def romano_a_entero(romano):
     
 
     resultado = 0
+    anterior = 0
     for letra in romano: #'MCXXIII'
         if letra not in digitos_romanos:
             return f'ERROR: {letra} no es un dígito romano válido (I, V, X, L, C, D, M)'
-        resultado = resultado + digitos_romanos[letra]
+        actual = digitos_romanos[letra]
+        #si actual es menor que anterior sumo el valor al resultado
+        if actual > anterior:
+            # ya veremos
+            resultado = resultado
+        else:    
+            #si no .... resta
+            resultado = resultado + actual
+        anterior = actual
     
     return resultado
 
 pruebas = [
-    'I', 'XV', 'CCLII', 'MCXXIII'
+    'IV','I', 'XV', 'CCLII', 'MCXXIII'
 ]
 
 for elemento in pruebas:

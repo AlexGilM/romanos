@@ -136,7 +136,6 @@ def romano_a_entero(romano):
     if type(romano) != str:
         raise TypeError ('ERROR: tiene que ser un número romano como cadena de texto (string)')
     
-    # TODO: lanzar excepción
     error = 'ERROR: no 5 repetidos'
     # if 'VV' in romano:
     #     return error
@@ -147,8 +146,9 @@ def romano_a_entero(romano):
     pares_no_validos = ['VV', 'LL', 'DD']
     for par in pares_no_validos:
         if par in romano:
+            raise IndexError('Error: No se puede incluir "VV, LL, DD"')
             # TODO: lanzar excepción 
-            return error
+            #return error
     
     resultado = 0
     anterior = 0
@@ -157,7 +157,7 @@ def romano_a_entero(romano):
     for letra in romano:    # 'MCXXIII'
         if letra not in digitos_romanos:
             # TODO: lanzar excepción
-            return f'ERROR: {letra} no es un dígito romano válido (I, V, X, L, C, D, M)'
+            raise IndexError (f'ERROR: {letra} no es un dígito romano válido (I, V, X, L, C, D, M)')
 
         actual = digitos_romanos[letra]
 

@@ -101,17 +101,20 @@ def convertir_a_romano(numero):
 
 def romano_a_entero(romano):
     """
-    MCXXII => 1123
+    MCXXIII => 1123
+
         - validar la entrada
             - tiene que ser una cadena
             - la cadena debe tener un carácter válido: I, V, X, L, C, D, M
+
         - proceso básico de conversión
             - leemos las letras de izquierda a derecha
-            - para cada legtra obtenemos su valor
-                y vamos sumando con el valor acumulado
-            - cuando ya no quedan mas letras el valor acumulado es el resultado
+            - para cada letra obtenemos su valor
+                - y vamos sumando con el valor acumulado
+            - cuando ya no quedan más letras el valor acumulado es el resultado
+
     """
-  
+
     digitos_romanos = {
         'I': 1,
         'V': 5,
@@ -121,37 +124,76 @@ def romano_a_entero(romano):
         'D': 500,
         'M': 1000,
     }
+    # 5
+    # 50
+    # 500
 
 
-    
     if romano == '':
         return 'ERROR: debes introducir una cadena válida (no vacía)'
-    #alternativa: if not isinstance(romano, str):
+
+    # alt: if not isinstance(romano, str):
     if type(romano) != str:
         return 'ERROR: tiene que ser un número romano como cadena de texto (string)'
     
-
+    error = 'ERROR: no 5 repetidos'
+    # if 'VV' in romano:
+    #     return error
+    # if 'LL' in romano:
+    #     return error
+    # if 'DD' in romano:
+    #     return error
+    pares_no_validos = ['VV', 'LL', 'DD']
+    for par in pares_no_validos:
+        if par in romano:
+            return error
+    
     resultado = 0
     anterior = 0
-    for letra in romano: #'MCXXIII'
+    repeticiones = 0
+
+    for letra in romano:    # 'MCXXIII'
         if letra not in digitos_romanos:
             return f'ERROR: {letra} no es un dígito romano válido (I, V, X, L, C, D, M)'
+
         actual = digitos_romanos[letra]
-        #si actual es menor que anterior sumo el valor al resultado
+
+        # si actual es mayor que anterior significa que el anterior resta
         if actual > anterior:
-            # ya veremos
-            resultado = resultado
-        else:    
-            #si no .... resta
+            # no se puede restar 5, 50, 500
+            # if anterior in [5, 50, 500]:
+            #     return 'ERROR: resta imposible (V, L, D)'
+            if '5' in str(anterior):
+                return 'ERROR: resta imposible (V, L, D)'
+            if anterior > 0 and anterior < actual / 10:
+                return 'ERROR: no puedo restar'
+            # como en el paso anterior he sumado el valor
+            # de "anterior" y ahora me doy cuenta de que,
+            # en realidad, resta. Entonces, deshago la suma
+            # de la iteración previa.
+            resultado = resultado - anterior
+            # ahora sí, al valor actual le resto el anterior
+            # y eso, lo sumo al resultado
+            resultado = resultado + (actual - anterior)
+        else:
+            if actual == anterior:
+                repeticiones = repeticiones + 1
+            else:
+                repeticiones = 0
+            if repeticiones >= 3:
+                return 'ERROR: no se puede repetir un símbolo más de tres veces'
+            # si no ... suma
             resultado = resultado + actual
+
         anterior = actual
-    
+        
+
     return resultado
 
-pruebas = [
-    'IV','I', 'XV', 'CCLII', 'MCXXIII'
-]
 
-for elemento in pruebas:
-        print(elemento, romano_a_entero(elemento))
+#pruebas = [
+#     'IIII', 'XIIII', 'MIXXXX', 'MIXXX', 'MXXIX', 'MXXX', 'XC', 'IV', 'MCXXIV', 'I', 'XV', 'CCLII', 'MCXXIII',
+#]
 
+#for elemento in pruebas:
+#     print(elemento, romano_a_entero(elemento))

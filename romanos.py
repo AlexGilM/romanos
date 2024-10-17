@@ -6,14 +6,16 @@ class Romano:
         print('Constructor con', entrada)
         if type(entrada) == int:
             self.valor = entrada
+            self.cadena = self.convertir_a_romano()
         elif type(entrada) == str:
             self.cadena = entrada
+            self.valor = self.romano_a_entero()
         else:
             raise TypeError('Solo acepto enteros o cadenas')
     
     def convertir_a_romano(self):
         print('Convertir a romano', self.valor)
-        #validaciones
+        #validacionesa =
         if type(self.valor) != int:
             return f'Error:  {self.valor}  no es un entero'
         elif self.valor <= 0 or self.valor >=4000:
@@ -32,20 +34,7 @@ class Romano:
             millares,     
             ]
 
-        # conversores = [
-        #     ['', 'I','II','III','IV','V','VI','VII','VIII','IX']
-        #     ['', 'X','XX', 'XXX', 'XL', 'L', 'LX', 'LXX','LXXX', 'XC']
-        #     ['','C','CC','CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM']
-        #     ['', 'M', 'MM', 'MMM']
-        # ]
 
-        # conversores[1][4] -----> 40 ó XL
-        #1 --- conversores[3][1]
-        #1 --- conversores[2][1]
-        #3 --- conversores[1][3]
-        #7 --- conversores[03][7]
-        #range(4) ---- 1000, 1000, 10, 1 ----- 3, 2, 1, 0
-        #inicializacion
         romano = ''
         numero = self.valor
 
@@ -60,6 +49,87 @@ class Romano:
         #devolvemos resultado
         return romano
 
-        def romano_a_entero(self):
-            print('Romano a entero', self.valor_de_entrada)
+    def romano_a_entero(self):
+        print('Romano a entero', self.cadena)
+        romano = self.cadena
+        digitos_romanos = {
+            'I': 1,
+            'V': 5,
+            'X': 10,
+            'L': 50,
+            'C': 100,
+            'D': 500,
+            'M': 1000,
+        }
+        # 5
+        # 50
+        # 500
+
+
+        if romano == '':
+            raise ValueError ('ERROR: debes introducir una cadena válida (no vacía)')
+
+        # alt: if not isinstance(romano, str):
+        if type(romano) != str:
+            raise TypeError ('ERROR: tiene que ser un número romano como cadena de texto (string)')
+        
+        error = 'ERROR: no 5 repetidos'
+        # if 'VV' in romano:
+        #     return error
+        # if 'LL' in romano:
+        #     return error
+        # if 'DD' in romano:
+        #     return error
+        pares_no_validos = ['VV', 'LL', 'DD']
+        for par in pares_no_validos:
+            if par in romano:
+                raise IndexError('Error: No se puede incluir "VV, LL, DD"')
+                # TODO: lanzar excepción 
+                #return error
+        
+        resultado = 0
+        anterior = 0
+        repeticiones = 0
+
+        for letra in romano:    # 'MCXXIII'
+            if letra not in digitos_romanos:
+                # TODO: lanzar excepción
+                raise IndexError (f'ERROR: {letra} no es un dígito romano válido (I, V, X, L, C, D, M)')
+
+            actual = digitos_romanos[letra]
+
+            # si actual es mayor que anterior significa que el anterior resta
+            if actual > anterior:
+                # no se puede restar 5, 50, 500
+                # if anterior in [5, 50, 500]:
+                #     return 'ERROR: resta imposible (V, L, D)'
+                if '5' in str(anterior):
+                    # TODO: lanzar excepción
+                    return 'ERROR: resta imposible (V, L, D)'
+                if anterior > 0 and anterior < actual / 10:
+                    # TODO: lanzar excepción
+                    return 'ERROR: no puedo restar'
+                # como en el paso anterior he sumado el valor
+                # de "anterior" y ahora me doy cuenta de que,
+                # en realidad, resta. Entonces, deshago la suma
+                # de la iteración previa.
+                resultado = resultado - anterior
+                # ahora sí, al valor actual le resto el anterior
+                # y eso, lo sumo al resultado
+                resultado = resultado + (actual - anterior)
+            else:
+                if actual == anterior:
+                    repeticiones = repeticiones + 1
+                else:
+                    repeticiones = 0
+                if repeticiones >= 3:
+                    # TODO: lanzar excepción
+                    return 'ERROR: no se puede repetir un símbolo más de tres veces'
+                # si no ... suma
+                resultado = resultado + actual
+
+            anterior = actual
+            
+
+        return resultado        
 
